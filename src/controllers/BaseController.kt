@@ -2,7 +2,7 @@ package controllers
 
 import kotlin.system.exitProcess
 
-abstract class BaseController {
+abstract class BaseController(val inputProvider: InputProvider) {
 
     /*
      Get a Human  readable name of the
@@ -16,7 +16,19 @@ abstract class BaseController {
 
     abstract val options: List<BaseController>
 
-    abstract fun readOption(): String
+    /*
+     Verify that the user can enters the controller
+     */
+    open fun enter(): Boolean {
+        return true
+    }
+
+    /*
+     Called when the user exits from the controller
+     */
+    open fun exit(): Boolean {
+        return true
+    }
 
     open fun display() {
         do {
@@ -30,11 +42,10 @@ abstract class BaseController {
                 println("\t$index.) ${baseController.name} ")
             }
             println("\t${options.size}.) Exit ")
-            val ans = readOption().toInt()
+            val ans = inputProvider.readLine().toInt()
             when (ans) {
                 in options.indices -> {
-                    val selectedController = options[ans]
-                    selectedController.display()
+                    selectedOption(ans)
                     canContinue = true
                 }
 
@@ -48,6 +59,15 @@ abstract class BaseController {
                 }
             }
         } while (canContinue)
+    }
+
+
+    open fun selectedOption(index: Int) {
+        val selectedController = options[index]
+        if (selectedController.enter()) {
+            selectedController.display()
+            selectedController.exit()
+        }
     }
 
 }
