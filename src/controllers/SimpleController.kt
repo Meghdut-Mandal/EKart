@@ -1,6 +1,9 @@
 package controllers
 
-class SimpleController(
+/*
+A simplified controller which doesn't have any more nested Controllers
+ */
+open class SimpleController(
     inputProvider: InputProvider,
     override val name: String,
     val displayFunc: () -> Unit
@@ -13,3 +16,11 @@ class SimpleController(
 
     override fun display() = displayFunc()
 }
+
+/*
+Extension function to avoid passing inputProvider Everytime
+ */
+fun BaseController.SimpleController(
+    name: String,
+    displayFunc: () -> Unit
+) = SimpleController(inputProvider, name, displayFunc)

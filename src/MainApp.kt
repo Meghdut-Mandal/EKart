@@ -1,8 +1,19 @@
-object MainApp {
+import controllers.HomeController
+import controllers.InputProvider
+import java.util.*
+
+object MainApp : InputProvider {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        println("Hello World!")
+        val homeController = HomeController(this)
+        homeController.display()
+    }
+
+    val scanner = Scanner(System.`in`)
+
+    override fun readLine(): String {
+        return scanner.nextLine()
     }
 
 }
