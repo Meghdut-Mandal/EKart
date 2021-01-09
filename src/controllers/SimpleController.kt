@@ -4,10 +4,10 @@ package controllers
 A simplified controller which doesn't have any more nested Controllers
  */
 open class SimpleController(
-    inputProvider: InputProvider,
+    IOProvider: IOProvider,
     override val name: String,
     val displayFunc: () -> Unit
-) : BaseController(inputProvider) {
+) : BaseController(IOProvider) {
 
     override val description: String
         get() = ""
@@ -23,4 +23,4 @@ Extension function to avoid passing inputProvider Everytime
 fun BaseController.SimpleController(
     name: String,
     displayFunc: () -> Unit
-) = SimpleController(inputProvider, name, displayFunc)
+) = SimpleController(io, name, displayFunc)

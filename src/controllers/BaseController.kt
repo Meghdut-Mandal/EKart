@@ -2,7 +2,7 @@ package controllers
 
 import kotlin.system.exitProcess
 
-abstract class BaseController(val inputProvider: InputProvider) {
+abstract class BaseController(val io: IOProvider) {
 
     /*
      Get a Human  readable name of the
@@ -34,15 +34,15 @@ abstract class BaseController(val inputProvider: InputProvider) {
         do {
             var canContinue: Boolean
             val title = "$name ::: $description"
-            println("-".repeat(title.length))
-            println(title)
-            println("-".repeat(title.length))
-            println("Enter a key corresponding to the option")
+            io.println("-".repeat(title.length))
+            io.println(title)
+            io.println("-".repeat(title.length))
+            io.println("Enter a key corresponding to the option")
             options.forEachIndexed { index: Int, baseController: BaseController ->
-                println("\t$index.) ${baseController.name} ")
+                io.println("\t$index.) ${baseController.name} ")
             }
-            println("\t${options.size}.) Exit ")
-            val ans = inputProvider.readLine().toInt()
+            io.println("\t${options.size}.) Exit ")
+            val ans = io.readLine().toInt()
             when (ans) {
                 in options.indices -> {
                     selectedOption(ans)
@@ -50,7 +50,7 @@ abstract class BaseController(val inputProvider: InputProvider) {
                 }
 
                 options.size -> {
-                    println("Thanks for shopping! Visit us again.")
+                    io.println("Thanks for shopping! Visit us again.")
                     exitProcess(0)
                 }
                 else -> {

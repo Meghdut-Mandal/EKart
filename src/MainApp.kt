@@ -1,8 +1,9 @@
 import controllers.HomeController
-import controllers.InputProvider
+import controllers.IOProvider
+import java.lang.System.out
 import java.util.*
 
-object MainApp : InputProvider {
+object MainApp : IOProvider {
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -14,6 +15,14 @@ object MainApp : InputProvider {
 
     override fun readLine(): String {
         return scanner.nextLine()
+    }
+
+    override fun println(line: String) {
+        kotlin.io.println(line)
+    }
+
+    override fun println(obj: Any) {
+        println(obj.toString())
     }
 
 }
