@@ -41,7 +41,8 @@ abstract class BaseController(val io: IOProvider) {
             options.forEachIndexed { index: Int, baseController: BaseController ->
                 io.println("\t$index.) ${baseController.name} ")
             }
-            io.println("\t${options.size}.) Exit ")
+            io.println("\t${options.size}.) Go Back ")
+            io.println("\t${options.size + 1}.) Exit Program")
             val ans = io.readLine().toInt()
             when (ans) {
                 in options.indices -> {
@@ -50,6 +51,10 @@ abstract class BaseController(val io: IOProvider) {
                 }
 
                 options.size -> {
+                    canContinue = false
+                }
+
+                options.size + 1 -> {
                     io.println("Thanks for shopping! Visit us again.")
                     exitProcess(0)
                 }
