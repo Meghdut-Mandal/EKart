@@ -2,6 +2,7 @@ package controllers
 
 import domain.Admin
 import domain.User
+import getID
 import storage.AdminDao
 import storage.AdminDaoImpl
 import storage.UserDaoImpl
@@ -28,20 +29,20 @@ class NewUserController(io: IOProvider) : BaseController(io) {
         val email = io.readItem("Email")
         io.println("Are you the Owner? (y/n)")
         val isOwner = io.readLine().contains("y")
-        val id = System.currentTimeMillis().toString()
+        val id = getID()
         val admin = Admin(id, name, email, password.hashCode(), isOwner)
         adminDao.addAdmin(admin)
-        io.println("Admin created successfully ")
+        io.println("Admin created successfully, Go back to Login as Admin")
     }
 
     private fun userCreate() {
         val name = io.readItem("User Name")
         val password = io.readItem("Password")
         val email = io.readItem("Email")
-        val id = System.currentTimeMillis().toString()
+        val id = getID()
         val user = User(id, name, email, password.hashCode())
         userDao.addUser(user)
-        io.println("User created Successfully")
+        io.println("User created Successfully,  Go back to Login as User")
     }
 
 }

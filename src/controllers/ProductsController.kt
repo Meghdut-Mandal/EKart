@@ -2,6 +2,7 @@ package controllers
 
 import domain.Category
 import domain.Product
+import getID
 import storage.CartDao
 import storage.CartDaoImpl
 import storage.ProductsDao
@@ -36,9 +37,13 @@ class ProductsController(
     }
 
     private fun purchaseProduct() {
+        val productsByCategory = productsDao.findProductsByCategory(category.id)
+        if (productsByCategory.isEmpty()) {
+            io.println("No Products in this Category")
+            return
+        }
         io.println("Choose a product index ")
         viewAllProducts()
-        val productsByCategory = productsDao.findProductsByCategory(category.id)
         val option = io.readIntItem("Product Index") { it in productsByCategory.indices }
         val selectedProduct = productsByCategory[option]
         io.println("${selectedProduct.name} added to Cart")
@@ -47,6 +52,10 @@ class ProductsController(
 
     private fun viewAllProducts() {
         val productsByCategory = productsDao.findProductsByCategory(category.id)
+        if (productsByCategory.isEmpty()) {
+            io.println("No Products in this Category")
+            return
+        }
         productsByCategory.forEachIndexed { index: Int, product: Product ->
             io.println("\t$index). ${product.name}")
         }
@@ -57,7 +66,7 @@ class ProductsController(
         val productName = io.readItem("Product Name")
         val price =
             io.readDoubleItem("Price") { price -> price > 0.0 }  // Lambda function to validate the Price entered
-        val id = System.currentTimeMillis().toString()
+        val id = getID()
         val description = io.readItem("Description")
         val product = Product(id, productName, price, description, category.id)
         productsDao.addProduct(product)

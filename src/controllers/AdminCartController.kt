@@ -8,8 +8,9 @@ import storage.UsersDao
 
 class AdminCartController(io: IOProvider) : BaseController(io) {
 
-    val cartDao: CartDao = CartDaoImpl // TODO use DI
-    val usersDao: UsersDao = UserDaoImpl // TODO use DI
+    private val cartDao: CartDao = CartDaoImpl // TODO use DI
+    private val usersDao: UsersDao = UserDaoImpl // TODO use DI
+
     override val name: String
         get() = "User Carts"
 

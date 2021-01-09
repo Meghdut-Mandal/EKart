@@ -1,6 +1,7 @@
 package controllers
 
 import domain.Category
+import getID
 import storage.CategoryDao
 import storage.CategoryDaoImpl
 
@@ -48,7 +49,7 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
     private fun addCategory() {
         val categoryName = io.readItem("Category Name")
         val description = io.readItem("Description")
-        val id = System.currentTimeMillis().toString()
+        val id = getID()
         val category = Category(id, categoryName, description)
         categoriesDao.addCategory(category)
     }
