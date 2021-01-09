@@ -9,5 +9,10 @@ abstract class Offer {
     /*
     Determine if the Offer is applicable on the items currently in the cart
      */
-    abstract fun isApplicable(cart: Cart): Boolean
+    abstract fun isApplicable(cart: Bill): Boolean
+
+    /*
+    Apply the offer on the Gross price
+     */
+    abstract fun applyOffer(grossPrice: Double): Double
 }
