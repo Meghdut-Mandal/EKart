@@ -11,7 +11,7 @@ object MainApp : IOProvider {
         homeController.display()
     }
 
-    val scanner = Scanner(System.`in`)
+    private val scanner = Scanner(System.`in`)
 
     override fun readLine(): String {
         return scanner.nextLine()
