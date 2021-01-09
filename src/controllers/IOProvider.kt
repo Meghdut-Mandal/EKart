@@ -52,12 +52,12 @@ fun IOProvider.readDoubleItem(name: String, isValid: (Double) -> Boolean = { tru
  Read an integer properly. And Prompt if wrong value entered.
  */
 fun IOProvider.readIntItem(name: String, isValid: (Int) -> Boolean = { true }): Int {
-    val input = 1
+    val input = 0
     do {
         val str = readItem(name).toIntOrNull()
 
-        if (str == null || isValid(str)) {
-            println("Enter a valid $name")
+        if (str == null || !isValid(str)) {
+            println("Invalid $name Entered ")
             continue
         } else {
             return str

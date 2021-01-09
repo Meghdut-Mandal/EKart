@@ -1,6 +1,7 @@
 package storage
 
 import domain.Cart
+import domain.NewYearOffer
 import domain.Product
 
 object CartDaoImpl : CartDao {
@@ -16,13 +17,15 @@ object CartDaoImpl : CartDao {
     }
 
     override fun addProductToCart(product: Product, userId: String) {
-        val cart= getCart(userId)
+        val cart = getCart(userId)
         cart.items
     }
 
     private fun newCart(userId: String): Cart {
         val id = System.currentTimeMillis().toString()
-        return Cart(id, 0.0, userId)
+        val cart = Cart(id, 0.0, userId)
+        cart.offers.add(NewYearOffer())
+        return cart
     }
 
 
