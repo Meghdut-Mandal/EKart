@@ -10,6 +10,10 @@ data class Cart(
     val offers: MutableList<Offer> = mutableListOf()
 )
 
+fun Cart.emptyCart() {
+    items.removeAll { true }
+}
+
 fun Cart.generateBill(): Bill {
     val id = getID()
     return Bill(id, userId, items, offers)
