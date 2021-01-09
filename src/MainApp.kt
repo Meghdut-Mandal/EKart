@@ -1,6 +1,5 @@
 import controllers.HomeController
 import controllers.IOProvider
-import java.lang.System.out
 import java.util.*
 
 object MainApp : IOProvider {
@@ -26,3 +25,8 @@ object MainApp : IOProvider {
     }
 
 }
+
+/*
+ Generate a unique ID.
+ */
+fun getID() = System.currentTimeMillis().toString()
