@@ -18,20 +18,16 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
     init {
         if (isAdmin) {
             options.add(SimpleController("Add Category", ::addCategory))
-            options.add(SimpleController(("Add/View Products of a Category"), ::editProducts))
+            options.add(SimpleController(("Add/View Products of a Category"), ::gotoProductsController))
 
         } else {
-            options.add(SimpleController("Shop Products of a Category", ::shopProducts))
+            options.add(SimpleController("Shop Products of a Category", ::gotoProductsController))
         }
         options.add(SimpleController("View All categories ", ::viewAll))
-
-
     }
 
-    /*
-    For the admin to Add  Products of a Category
-     */
-    private fun editProducts() {
+
+    private fun gotoProductsController() {
         io.println("Select a category from the list of Categories")
         viewAll()
         val categories = categoriesDao.getAll()
@@ -40,13 +36,6 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
         productsController.enter()
         productsController.display()
         productsController.exit()
-    }
-
-    /*
-    For the User to add products to a cart
-     */
-    private fun shopProducts() {
-
     }
 
     private fun viewAll() {
