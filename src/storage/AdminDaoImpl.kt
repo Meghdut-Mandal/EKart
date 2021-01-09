@@ -9,19 +9,19 @@ class AdminDaoImpl : AdminDao {
 
     private val admins = mutableListOf<Admin>()
 
-    override fun getAdminById(id: String): Admin {
-        if (isValidID(id)) {
-            return admins.find { it.id == id }!!
+    override fun getAdminById(email: String): Admin {
+        if (isValidEmailId(email)) {
+            return admins.find { it.email == email }!!
         }
         throw IllegalArgumentException("The given id is Invalid")
     }
 
-    override fun isValidID(id: String): Boolean {
-        return admins.any { it.id == id }
+    override fun isValidEmailId(emailId: String): Boolean {
+        return admins.any { it.email == emailId }
     }
 
     override fun addAdmin(admin: Admin) {
-        if (isValidID(admin.id)) {
+        if (isValidEmailId(admin.email)) {
             throw IllegalArgumentException("An Admin with the given ID exists! ")
         }
         admins.add(admin)

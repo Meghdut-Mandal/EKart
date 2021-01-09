@@ -8,7 +8,7 @@ class UserDaoImpl : UsersDao {
 
     override fun getUserById(id: String): User {
         if (isValidEmailId(id)) {
-            return users.find { it.id == id }!!
+            return users.find { it.email == id }!!
         }
         throw IllegalArgumentException("The given id is Invalid")
     }
@@ -18,7 +18,7 @@ class UserDaoImpl : UsersDao {
     }
 
     override fun addUser(user: User) {
-        if (isValidEmailId(user.id)) {
+        if (isValidEmailId(user.email)) {
             throw IllegalArgumentException("An User with the given ID exists! ")
         }
         users.add(user)

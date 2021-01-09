@@ -6,12 +6,12 @@ interface AdminDao {
     /*
     Find a Admin by its id
      */
-    fun getAdminById(id: String): Admin
+    fun getAdminById(email: String): Admin
 
     /*
     Checks if an Admin exits for the given id
      */
-    fun isValidID(id: String): Boolean
+    fun isValidEmailId(emailId: String): Boolean
 
     /*
     Adds an new Admin to the database
