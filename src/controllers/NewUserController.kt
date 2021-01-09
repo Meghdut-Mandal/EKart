@@ -14,9 +14,9 @@ class NewUserController(io: IOProvider) : BaseController(io) {
     private val userDao: UsersDao = UserDaoImpl  // TODO use DI
 
     override val name: String
-        get() = "Create New User"
+        get() = "Create New User or Admin"
     override val description: String
-        get() = " You can create Admin and User "
+        get() = " You can Signup as an User or Admin "
 
     override val options: List<BaseController> = listOf(
         SimpleController("Create User", ::userCreate),

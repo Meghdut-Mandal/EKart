@@ -41,12 +41,16 @@ class UserController(IOProvider: IOProvider) : BaseController(IOProvider) {
     override val description: String
         get() = " You can shop for Products and add them to cart"
 
-
-    override val options: List<BaseController> = listOf(
-        CategoriesController(io, false),
-        SimpleController("Checkout from Cart", ::checkOut),
-        CartController(io, user.id)
-    )
+    /*
+    This has been made lazy so that the initialisation of the CartController is done after login
+     */
+    override val options: List<BaseController> by lazy {
+        listOf(
+            CategoriesController(io, false),
+            SimpleController("Checkout from Cart", ::checkOut),
+            CartController(io, user.id)
+        )
+    }
 
     private fun checkOut() {
         val cart = cartDao.getCart(user.id)

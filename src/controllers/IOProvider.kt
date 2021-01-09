@@ -36,7 +36,7 @@ fun IOProvider.readDoubleItem(name: String, isValid: (Double) -> Boolean = { tru
     do {
         val str = readItem(name).toDoubleOrNull()
 
-        if (str == null || isValid(str)) {
+        if (str == null || !isValid(str)) {
             println("Enter a valid $name")
             continue
         } else {
