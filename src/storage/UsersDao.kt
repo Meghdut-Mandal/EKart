@@ -11,7 +11,7 @@ interface UsersDao {
     /*
     Checks weather an user exists for the given Id
      */
-    fun isValidId(id: String): Boolean
+    fun isValidID(id: String): Boolean
 
     /*
     Adds a new user to the Database
