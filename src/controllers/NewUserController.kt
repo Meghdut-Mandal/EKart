@@ -9,8 +9,8 @@ import storage.UsersDao
 
 class NewUserController(io: IOProvider) : BaseController(io) {
 
-    private val adminDao: AdminDao = AdminDaoImpl() // TODO use DI
-    private val userDao: UsersDao = UserDaoImpl()  // TODO use DI
+    private val adminDao: AdminDao = AdminDaoImpl// TODO use DI
+    private val userDao: UsersDao = UserDaoImpl  // TODO use DI
 
     override val name: String
         get() = "Create New User"

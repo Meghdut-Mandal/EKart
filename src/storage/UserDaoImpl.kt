@@ -2,7 +2,7 @@ package storage
 
 import domain.User
 
-class UserDaoImpl : UsersDao {
+object UserDaoImpl : UsersDao {
 
     private val users = mutableListOf<User>()
 

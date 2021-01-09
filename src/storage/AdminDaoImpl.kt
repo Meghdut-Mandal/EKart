@@ -5,7 +5,7 @@ import domain.Admin
 /*
 An ArrayList backed Dao
  */
-class AdminDaoImpl : AdminDao {
+object AdminDaoImpl : AdminDao {
 
     private val admins = mutableListOf<Admin>()
 
