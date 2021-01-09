@@ -27,3 +27,23 @@ fun IOProvider.readItem(name: String, empty: Boolean = false): String {
 
     return input
 }
+
+/*
+ Read a proper Double value properly from the provider
+ */
+fun IOProvider.readDoubleItem(name: String, isValid: (Double) -> Boolean = { true }): Double {
+    val input = 0.0
+    do {
+        val str = readItem(name).toDoubleOrNull()
+
+        if (str == null || isValid(str)) {
+            println("Enter a valid $name")
+            continue
+        }else{
+            return str
+        }
+
+    } while (!isValid(input))
+
+    return 0.0
+}
