@@ -3,6 +3,7 @@ package storage
 import domain.Cart
 import domain.NewYearOffer
 import domain.Product
+import getID
 
 object CartDaoImpl : CartDao {
 
@@ -22,11 +23,10 @@ object CartDaoImpl : CartDao {
     }
 
     private fun newCart(userId: String): Cart {
-        val id = System.currentTimeMillis().toString()
+        val id = getID()
         val cart = Cart(id, 0.0, userId)
         cart.offers.add(NewYearOffer())
         return cart
     }
-
 
 }
