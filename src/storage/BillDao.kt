@@ -9,4 +9,6 @@ interface BillDao {
     fun getAllBills(): List<Bill>
 
     fun getUserBills(userId: String): List<Bill>
+
+    fun addBill(bill: Bill)
 }

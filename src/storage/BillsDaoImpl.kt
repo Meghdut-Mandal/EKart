@@ -10,6 +10,10 @@ object BillsDaoImpl : BillDao {
         return userBills.filter { it.userID == userId }
     }
 
+    override fun addBill(bill: Bill) {
+        userBills.add(bill)
+    }
+
     override fun hasBill(userId: String): Boolean {
         return userBills.any { it.userID == userId }
     }
