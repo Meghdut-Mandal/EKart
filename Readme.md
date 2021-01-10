@@ -27,3 +27,9 @@ Requires Java Runtime 11+
 3. For easy access a Pre-initialized User is given with the Credentials **email= c password= c**
 4. Similarly, a pre-initialized Admin is given with the Credentials **email= m password= m**
 
+### Running the Test
+* Open the project in IntelliJ IDEA
+* The Tests are located in **test** folder
+* Currently, only Dao tests are there
+* However, the Controllers can be easily by mocking IOProvider
+
