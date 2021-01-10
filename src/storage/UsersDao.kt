@@ -6,7 +6,7 @@ interface UsersDao {
     /*
      Find user by its id
      */
-    fun getUserById(id: String): User
+    fun getUserByEmailId(id: String): User
 
     /*
     Checks weather an user exists for the given Id
@@ -17,4 +17,6 @@ interface UsersDao {
     Adds a new user to the Database
      */
     fun addUser(user: User)
+
+    fun getUserById(id: String):User
 }

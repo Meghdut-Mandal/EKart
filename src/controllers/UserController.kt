@@ -21,7 +21,7 @@ class UserController(IOProvider: IOProvider) : BaseController(IOProvider) {
         val email = io.readItem("Email")
         if (userDao.isValidEmailId(email)) {
             val passwordHash = io.readItem("Password").hashCode()
-            val user = userDao.getUserById(email)
+            val user = userDao.getUserByEmailId(email)
             return if (user.passwordHash == passwordHash) {
                 io.println("Login Successfully  for User ${user.name}")
                 this.user = user
