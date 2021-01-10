@@ -19,10 +19,25 @@ class AdminDaoTest {
     }
 
     @Test
-    fun `Test isValid Id`(){
+    fun `Test isValid Id`() {
         val admin1 = Admin("4764", "m6", "mk", "m".hashCode(), true)
         adminDao.addAdmin(admin1)
         assert(adminDao.isValidEmailId(admin1.email))
     }
+
+    @Test
+    fun `Exception while inserting duplicate Values`() {
+        val admin1 = Admin("24244", "m6", "dfdf", "m".hashCode(), true)
+        adminDao.addAdmin(admin1)
+        val isExceptionThrown =
+            try {
+                adminDao.addAdmin(admin1)
+                false
+            } catch (e: IllegalArgumentException) {
+                true
+            }
+        assert(isExceptionThrown)
+    }
+
 
 }

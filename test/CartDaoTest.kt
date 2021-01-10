@@ -1,5 +1,4 @@
 import domain.Product
-import org.junit.Before
 import org.junit.Test
 import storage.CartDao
 import storage.CartDaoImpl
@@ -37,8 +36,8 @@ class CartDaoTest {
         cartDao.addProductToCart(product, userID)
         cartDao.addProductToCart(product2, userID)
         assert(cartDao.getAllCarts().contains(cart))
-        assert(cartDao.getAllCarts().size == 3)
     }
+
 
 
 }
