@@ -6,6 +6,11 @@ object UserDaoImpl : UsersDao {
 
     private val users = mutableListOf<User>()
 
+    init {
+     users.add(User("234234","c","c","c".hashCode()))
+    }
+
+
     override fun getUserById(id: String): User {
         if (isValidEmailId(id)) {
             return users.find { it.email == id }!!

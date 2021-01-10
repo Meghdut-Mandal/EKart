@@ -33,7 +33,7 @@ class AdminController(IOProvider: IOProvider) : BaseController(IOProvider) {
         get() = "You have Admin access to all user data and Products"
 
     override val options: List<BaseController> = listOf(
-        CategoriesController(io, true),
+        CategoriesController(io, true,),
         AdminCartController(io),
         SimpleController("View Bills Generated", ::viewBills)
     )

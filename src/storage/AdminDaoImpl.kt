@@ -9,6 +9,10 @@ object AdminDaoImpl : AdminDao {
 
     private val admins = mutableListOf<Admin>()
 
+    init {
+        admins.add(Admin("3483249","m","m","m".hashCode(),true))
+    }
+
     override fun getAdminById(email: String): Admin {
         if (isValidEmailId(email)) {
             return admins.find { it.email == email }!!

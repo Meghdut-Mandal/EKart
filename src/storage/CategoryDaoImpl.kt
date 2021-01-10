@@ -5,6 +5,10 @@ import domain.Category
 object CategoryDaoImpl : CategoryDao {
     private val categories = mutableListOf<Category>()
 
+    init {
+        categories.add(Category("234234", "Milk", "Good for health"))
+    }
+
     override fun isValidId(id: String): Boolean {
         return categories.any { it.id == id }
     }

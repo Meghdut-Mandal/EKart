@@ -19,13 +19,14 @@ object CartDaoImpl : CartDao {
 
     override fun addProductToCart(product: Product, userId: String) {
         val cart = getCart(userId)
-        cart.items
+        cart.items.add(product)
     }
 
     private fun newCart(userId: String): Cart {
         val id = getID()
         val cart = Cart(id, 0.0, userId)
         cart.offers.add(NewYearOffer())
+        userCarts.add(cart)
         return cart
     }
 

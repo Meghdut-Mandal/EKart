@@ -43,7 +43,7 @@ abstract class BaseController(val io: IOProvider) {
             }
             io.println("\t${options.size}.) Go Back ")
             io.println("\t${options.size + 1}.) Exit Program")
-            val ans = io.readLine().toInt()
+            val ans = io.readIntItem("Choice  ") { it in 0..options.size + 1 }
             when (ans) {
                 in options.indices -> {
                     selectedOption(ans)

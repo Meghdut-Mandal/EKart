@@ -46,7 +46,7 @@ class UserController(IOProvider: IOProvider) : BaseController(IOProvider) {
      */
     override val options: List<BaseController> by lazy {
         listOf(
-            CategoriesController(io, false),
+            CategoriesController(io, false,user.id),
             SimpleController("Checkout from Cart", ::checkOut),
             CartController(io, user.id)
         )

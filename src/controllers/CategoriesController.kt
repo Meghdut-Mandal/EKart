@@ -5,7 +5,8 @@ import getID
 import storage.CategoryDao
 import storage.CategoryDaoImpl
 
-class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseController(io) {
+class CategoriesController(io: IOProvider, private val isAdmin: Boolean, private val userID: String = "") :
+    BaseController(io) {
 
     private val categoriesDao: CategoryDao = CategoryDaoImpl /// TODO use DI
 
@@ -19,7 +20,12 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
     init {
         if (isAdmin) {
             options.add(SimpleController("Add Category", ::addCategory))
-            options.add(SimpleController(("Add/View Products of a Category"), ::gotoProductsController))
+            options.add(
+                SimpleController(
+                    ("Add/View Products of a Category"),
+                    ::gotoProductsController
+                )
+            )
 
         } else {
             options.add(SimpleController("Shop Products of a Category", ::gotoProductsController))
@@ -30,14 +36,14 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
 
     private fun gotoProductsController() {
         val categories = categoriesDao.getAll()
-        if (categories.isEmpty()){
+        if (categories.isEmpty()) {
             io.println("No Categories Found!")
             return
         }
         io.println("Select a category from the list of Categories")
         viewAll()
         val option = io.readIntItem("Category Index") { it in categories.indices }
-        val productsController = ProductsController(io, isAdmin, categories[option])
+        val productsController = ProductsController(io, isAdmin, categories[option], userID)
         productsController.enter()
         productsController.display()
         productsController.exit()
