@@ -16,7 +16,11 @@ fun Cart.emptyCart() {
 
 fun Cart.generateBill(): Bill {
     val id = getID()
-    return Bill(id, userId, items, offers)
+    val billItems = mutableListOf<Product>()
+    billItems.addAll(items)
+    val billOffers = mutableListOf<Offer>()
+    billOffers.addAll(offers)
+    return Bill(id, userId, billItems, billOffers)
 }
 
 fun Cart.isEmpty() = items.isEmpty()

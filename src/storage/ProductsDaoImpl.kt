@@ -5,6 +5,11 @@ import domain.Product
 object ProductsDaoImpl : ProductsDao {
 
     private val products = mutableListOf<Product>()
+
+    init {
+        products.add(Product("1212", "SoyaBeen", 100000.00, "Very Sweet", "234234"))
+    }
+
     override fun isValidId(id: String): Boolean {
         return products.any { it.id == id }
     }
