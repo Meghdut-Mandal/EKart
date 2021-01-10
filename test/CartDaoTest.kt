@@ -3,10 +3,19 @@ import org.junit.Test
 import storage.CartDao
 import storage.CartDaoImpl
 
-class DaoTest {
+class CartDaoTest {
     private val cartDao: CartDao = CartDaoImpl
     private val userID = "23423"
     private val categoryID = "12"
+
+    @Test
+    fun `Test empty Cart`() {
+        assert(cartDao.getAllCarts().isEmpty())
+        val cart = cartDao.getCart("24234")
+        val cart2 = cartDao.getCart("dfaf")
+        assert(cart != cart2)
+    }
+
 
     @Test
     fun `Test Add product to cart`() {
@@ -26,10 +35,8 @@ class DaoTest {
         cartDao.addProductToCart(product, userID)
         cartDao.addProductToCart(product2, userID)
         assert(cartDao.getAllCarts().contains(cart))
-        assert(cartDao.getAllCarts().size == 1)
+        assert(cartDao.getAllCarts().size == 3)
     }
-
-
 
 
 }
