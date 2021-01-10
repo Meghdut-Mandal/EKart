@@ -29,9 +29,13 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
 
 
     private fun gotoProductsController() {
+        val categories = categoriesDao.getAll()
+        if (categories.isEmpty()){
+            io.println("No Categories Found!")
+            return
+        }
         io.println("Select a category from the list of Categories")
         viewAll()
-        val categories = categoriesDao.getAll()
         val option = io.readIntItem("Category Index") { it in categories.indices }
         val productsController = ProductsController(io, isAdmin, categories[option])
         productsController.enter()
@@ -40,8 +44,9 @@ class CategoriesController(io: IOProvider, private val isAdmin: Boolean) : BaseC
     }
 
     private fun viewAll() {
+        val categories = categoriesDao.getAll()
         io.println("The categories Are :-  ")
-        categoriesDao.getAll().forEachIndexed { index, category ->
+        categories.forEachIndexed { index, category ->
             io.println("\t$index.) ${category.name} ")
         }
     }
