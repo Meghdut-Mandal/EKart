@@ -1,9 +1,11 @@
 import domain.Product
+import org.junit.Before
 import org.junit.Test
 import storage.CartDao
 import storage.CartDaoImpl
 
 class CartDaoTest {
+
     private val cartDao: CartDao = CartDaoImpl
     private val userID = "23423"
     private val categoryID = "12"
